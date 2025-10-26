@@ -4,7 +4,7 @@ package Backend;
 
 
 
-public class StudentDataBase {
+public class Student {
    
     private final int id;
     private  String name;
@@ -12,7 +12,8 @@ public class StudentDataBase {
     private final String gender;
     private String DP; 
     private double gpa;
-    public StudentDataBase(int id, String name, int age, String gender, String DP, double gpa) {
+    
+    public Student(int id, String name, int age, String gender, String DP, double gpa) {
         if (String.valueOf(id).length() != 4) {
             throw new IllegalArgumentException("ID must be 4 digits.");
         }
@@ -35,12 +36,14 @@ public class StudentDataBase {
         this.DP = DP;
         this.gpa = gpa;
     }
+    
     public int getID() { return id; }
     public String getName() { return name; }
     public int getAge() { return age; }
     public String getGender() { return gender; }
     public String getDepartment() { return DP; }
     public double getGPA() { return gpa; }
+    
     
     public String Save() {
         return id + "," + name + "," + age + "," + gender + "," + DP + "," + gpa;
@@ -79,5 +82,12 @@ public class StudentDataBase {
     public static boolean isValidGpa(double gpa) {
         return gpa >= 0.0 && gpa <= 4.0;
     }
+    
+    public String toTableFormat() {
+        return String.format("%-5d %-20s %-3d %-7s %-15s %.2f", 
+                           id,name, age, gender, DP, gpa);
+    }
+    
+
     
 }

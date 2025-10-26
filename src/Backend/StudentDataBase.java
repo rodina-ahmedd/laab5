@@ -11,13 +11,22 @@ import java.util.ArrayList;
 
 
 
-public class Student {
+public class StudentDataBase {
     private static final String FILENAME = "student.txt";
+    
+    private ArrayList<Student> students;
+    
+    public StudentDataBase() throws IOException
+    {
+      this.students=loadStudentsFromFile();
+    }
 
-    public static boolean addStudent(StudentDataBase student) throws IOException {
-        ArrayList<StudentDataBase> students = loadStudentsFromFile();
+    
+
+    public  boolean addStudent(Student student) throws IOException {
+        ArrayList<Student> students = loadStudentsFromFile();
         
-        for (StudentDataBase existingStudent : students) {
+        for (Student existingStudent : students) {
             if (existingStudent.getID() == student.getID()) {
                 return false;
             }
@@ -26,11 +35,12 @@ public class Student {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILENAME, true))) {
             writer.write(student.Save());
             writer.newLine();
+            this.students.add(student);
             return true; 
         } 
     }
-    public static ArrayList<StudentDataBase> loadStudentsFromFile() throws IOException {
-        ArrayList<StudentDataBase> students = new ArrayList<>();
+    public  ArrayList<Student> loadStudentsFromFile() throws IOException {
+        ArrayList<Student> students = new ArrayList<>();
         File file = new File(FILENAME);
         
         if (!file.exists()) {
@@ -57,7 +67,7 @@ public class Student {
                         String DP = parts[4].trim();
                         double gpa = Double.parseDouble(parts[5].trim());
 
-                        StudentDataBase student = new StudentDataBase(id, name, age, gender, DP, gpa);
+                        Student student = new Student(id, name, age, gender, DP, gpa);
                         students.add(student);
                         
                     } catch (NumberFormatException e) {
@@ -84,15 +94,17 @@ public class Student {
             System.out.print("No students found.");
             return;
         }
-        for (StudentDataBase student:students)
+        for (Student student:students)
         {
             System.out.println(student.toTableFormat());
         }
+    }
+     
         
         public void updateStudent(int id , String name , int age , String DP , double gpa) throws IOException
     {
-        StudentDataBase found = null ; 
-        for (StudentDataBase std : students)
+        Student found = null ; 
+        for (Student std : students)
         {
             
          if(std.getID()==id){
@@ -113,11 +125,12 @@ public class Student {
         saveStudentsToFile(FILENAME);
         System.out.print("Student updated successfully");
         }
+    }
         
         public void DeleteStudent(int id) throws IOException
     {
-        StudentDataBase found = null ;
-         for (StudentDataBase std : students)
+        Student found = null ;
+         for (Student std : students)
         {
             
          if(std.getID()==id){
@@ -137,30 +150,34 @@ public class Student {
          
     }
         
-        public ArrayList<StudentDataBase> search(String key)
+        public ArrayList<Student> search(String key)
     {
-     ArrayList<StudentDataBase> result = new ArrayList<>(); 
-     
-     for (StudentDataBase stu : students)
-     {
-         if(key.equals(stu.getName())||Integer.parseInt(key)==stu.getID())
-         {
-             result.add(stu);
-         }
-     }
-     
+     ArrayList<Student> result = new ArrayList<>(); 
+     for (Student stu : students) {
+        if(key.equalsIgnoreCase(stu.getName())) {
+            result.add(stu);
+        }
+        else {
+            try {
+                if(Integer.parseInt(key) == stu.getID()) {
+                    result.add(stu);
+                }
+            } catch (NumberFormatException e) {
+            }
+        }
+    }     
      return result ; 
     }
     
     public void DisplaySearchresults(String key)
     {
-        ArrayList<StudentDataBase> result = search (key);
+        ArrayList<Student> result = search (key);
         if(result.isEmpty()){
             System.out.print("No found student with search key : "+ key);
             return;
                     }
         else {
-             for (StudentDataBase student : result) {
+             for (Student student : result) {
             System.out.println(student.toTableFormat());
         }
         System.out.println("Found: " + result.size() + " students");
@@ -174,7 +191,7 @@ public class Student {
     {
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(FILENAME))){
             
-           for(StudentDataBase st : students)
+           for(Student st : students)
            {
                bw.write(st.Save());
                bw.newLine();
