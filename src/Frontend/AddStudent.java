@@ -4,6 +4,9 @@
  */
 package Frontend;
 
+import Backend.StudentDataBase;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mo
