@@ -136,6 +136,41 @@ public class Student {
         }
          
     }
+        
+        public ArrayList<StudentDataBase> search(String key)
+    {
+     ArrayList<StudentDataBase> result = new ArrayList<>(); 
+     
+     for (StudentDataBase stu : students)
+     {
+         if(key.equals(stu.getName())||Integer.parseInt(key)==stu.getID())
+         {
+             result.add(stu);
+         }
+     }
+     
+     return result ; 
+    }
+    
+    public void DisplaySearchresults(String key)
+    {
+        ArrayList<StudentDataBase> result = search (key);
+        if(result.isEmpty()){
+            System.out.print("No found student with search key : "+ key);
+            return;
+                    }
+        else {
+             for (StudentDataBase student : result) {
+            System.out.println(student.toTableFormat());
+        }
+        System.out.println("Found: " + result.size() + " students");
+        
+        }
+        
+        
+    }
+ 
+
 
         
     }
@@ -143,5 +178,5 @@ public class Student {
 
     
     
-}
+
 
