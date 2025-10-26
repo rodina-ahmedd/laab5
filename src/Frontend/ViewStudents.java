@@ -4,10 +4,11 @@
  */
 package Frontend;
 
-/**
- *
- * @author mo
- */
+import Backend.Student;
+import Backend.StudentDataBase;
+import javax.swing.table.DefaultTableModel;
+
+
 public class ViewStudents extends javax.swing.JPanel {
 
     /**
@@ -98,23 +99,29 @@ public class ViewStudents extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        loadStudents();
+        jButton2ActionPerformed(evt);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        StudentDataBase db = new StudentDataBase("students.txt");
-        List<Student> students = db.getAllStudents();
+        try {
+            StudentDataBase db = new StudentDataBase();
+            java.util.ArrayList<Student> students = db.loadStudentsFromFile();
+            String[] columns = {"ID", "Name", "Age", "Gender", "Department", "GPA"};
+            DefaultTableModel model = new DefaultTableModel(columns, 0);
+            for (Student s : students) {
+                Object[] row = {s.getID(),s.getName(),s.getAge(),s.getGender(),s.getDepartment(),s.getGPA()};
+                model.addRow(row);
+            }
 
-        String[] columns = {"ID", "Name", "Age", "Gender", "Department", "GPA"};
-        DefaultTableModel model = new DefaultTableModel(columns, 0);
+            jTable1.setModel(model);
 
-        for (Student s : students) {
-            Object[] row = {s.getId(),s.getName(),s.getAge(),s.getGender(),s.getDepartment(),s.getGpa()};
-            model.addRow(row);
+        } catch (Exception e) {
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, "Error loading students: " + e.getMessage());
         }
+    
 
-        jTable1.setModel(model);
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
