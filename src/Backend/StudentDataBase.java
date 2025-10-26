@@ -114,6 +114,30 @@ public class Student {
         System.out.print("Student updated successfully");
         }
         
+        public void DeleteStudent(int id) throws IOException
+    {
+        StudentDataBase found = null ;
+         for (StudentDataBase std : students)
+        {
+            
+         if(std.getID()==id){
+             found = std ; 
+             break ;
+         }
+        }
+         
+         if(found==null)
+            System.out.print("NO STUDENT WITH SUCH ID IS FOUND");
+        else {
+            students.remove(found);
+    
+        saveStudentsToFile(FILENAME);
+        System.out.print("Student removed successfully");
+        }
+         
+    }
+
+        
     }
 
 
