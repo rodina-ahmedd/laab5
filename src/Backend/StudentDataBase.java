@@ -89,6 +89,33 @@ public class Student {
             System.out.println(student.toTableFormat());
         }
         
+        public void updateStudent(int id , String name , int age , String DP , double gpa) throws IOException
+    {
+        StudentDataBase found = null ; 
+        for (StudentDataBase std : students)
+        {
+            
+         if(std.getID()==id){
+             found = std ; 
+             break ;
+         }
+         
+        }
+        
+        if(found==null)
+            System.out.print("NO STUDENT WITH SUCH ID IS FOUND");
+        else {
+            found.setName(name);
+            found.setAge(age);
+            found.setDepartment(DP);
+            found.setGPA(gpa);
+    
+        saveStudentsToFile(FILENAME);
+        System.out.print("Student updated successfully");
+        }
+        
+    }
+
 
     
     
