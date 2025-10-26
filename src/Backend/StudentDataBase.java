@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Backend;
 
 import java.io.BufferedReader;
@@ -12,10 +9,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- *
- * @author mo
- */
 
 
 public class Student {
@@ -83,5 +76,21 @@ public class Student {
             }
             return students;
     }
+    
+     public void viewStudent()
+    {
+        if(students.isEmpty())
+        {
+            System.out.print("No students found.");
+            return;
+        }
+        for (StudentDataBase student:students)
+        {
+            System.out.println(student.toTableFormat());
+        }
+        
+
+    
+    
 }
 
