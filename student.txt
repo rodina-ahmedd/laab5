@@ -1,1 +1,2 @@
 
+1001,rodina,22,Female,CCE,3.0
