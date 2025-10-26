@@ -170,6 +170,24 @@ public class Student {
         
     }
  
+    private void saveStudentsToFile(String FILENAME) throws IOException
+    {
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(FILENAME))){
+            
+           for(StudentDataBase st : students)
+           {
+               bw.write(st.Save());
+               bw.newLine();
+           }
+            
+        }
+        
+        catch(IOException e){
+            System.out.print("ERROR IN SAVING FILES");
+        }
+         }
+    
+
 
 
         
