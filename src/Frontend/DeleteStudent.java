@@ -5,11 +5,8 @@
 package Frontend;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author mo
- */
 public class DeleteStudent extends javax.swing.JPanel {
 
     /**
@@ -97,7 +94,7 @@ public class DeleteStudent extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selectedRow = jTable1.getSelectedRow();
         if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Please select a student to delete.");
+            JOptionPane.showMessageDialog(this, "Please select a student to delete");
         } else {
             int confirm = JOptionPane.showConfirmDialog(this, "Are you sure to delete?", "Confirm", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
