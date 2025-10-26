@@ -4,6 +4,8 @@
  */
 package Frontend;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mo
@@ -26,21 +28,130 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        login = new javax.swing.JButton();
+        UserName = new javax.swing.JLabel();
+        Password = new javax.swing.JLabel();
+        textUserName = new javax.swing.JTextField();
+        textPassword = new javax.swing.JPasswordField();
+        CheckPass = new javax.swing.JCheckBox();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        login.setBackground(new java.awt.Color(204, 204, 204));
+        login.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        login.setForeground(new java.awt.Color(153, 153, 255));
+        login.setText("Login");
+        login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginActionPerformed(evt);
+            }
+        });
+
+        UserName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        UserName.setForeground(new java.awt.Color(153, 153, 255));
+        UserName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        UserName.setText("User Name:");
+
+        Password.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Password.setForeground(new java.awt.Color(153, 153, 255));
+        Password.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Password.setText("Password:");
+
+        textUserName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textUserNameActionPerformed(evt);
+            }
+        });
+
+        textPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textPasswordActionPerformed(evt);
+            }
+        });
+
+        CheckPass.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CheckPass.setForeground(new java.awt.Color(153, 153, 255));
+        CheckPass.setText("Check pass");
+        CheckPass.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        CheckPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckPassActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(textUserName)
+                    .addComponent(textPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
+                .addGap(49, 49, 49)
+                .addComponent(CheckPass)
+                .addContainerGap(96, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(123, 123, 123))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CheckPass))
+                .addGap(29, 29, 29)
+                .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
+        String username=textUserName.getText();
+        String password=textPassword.getText();
+        if(username.equals("admin")&&password.equals("admin"))
+        {
+            HomePage h =new HomePage();
+            h.setVisible(true);
+            this.setVisible(false);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Error invalid user name or password");
+        }
+    }//GEN-LAST:event_loginActionPerformed
+
+    private void textUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textUserNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textUserNameActionPerformed
+
+    private void textPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textPasswordActionPerformed
+
+    private void CheckPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckPassActionPerformed
+        // TODO add your handling code here:
+        if (CheckPass.isSelected()){
+            textPassword.setEchoChar((char) 0);
+        }
+        else{
+            textPassword.setEchoChar('*');
+        }
+    }//GEN-LAST:event_CheckPassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +189,11 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox CheckPass;
+    private javax.swing.JLabel Password;
+    private javax.swing.JLabel UserName;
+    private javax.swing.JButton login;
+    private javax.swing.JPasswordField textPassword;
+    private javax.swing.JTextField textUserName;
     // End of variables declaration//GEN-END:variables
 }

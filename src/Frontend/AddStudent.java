@@ -26,19 +26,225 @@ public class AddStudent extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        textstudentname = new javax.swing.JTextField();
+        Age = new javax.swing.JLabel();
+        Gender = new javax.swing.JLabel();
+        optiongender = new javax.swing.JComboBox<>();
+        Department = new javax.swing.JLabel();
+        textstudentAge = new javax.swing.JTextField();
+        textdepartment = new javax.swing.JTextField();
+        textgpa = new javax.swing.JTextField();
+        Gpa = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        Add = new javax.swing.JButton();
+        StudentName = new javax.swing.JLabel();
+
+        textstudentname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textstudentnameActionPerformed(evt);
+            }
+        });
+
+        Age.setBackground(new java.awt.Color(255, 255, 255));
+        Age.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Age.setForeground(new java.awt.Color(153, 153, 255));
+        Age.setText("Age:");
+
+        Gender.setBackground(new java.awt.Color(255, 255, 255));
+        Gender.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Gender.setForeground(new java.awt.Color(153, 153, 255));
+        Gender.setText("Gender:");
+
+        optiongender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gender Selection", "Male", "Female" }));
+        optiongender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optiongenderActionPerformed(evt);
+            }
+        });
+
+        Department.setBackground(new java.awt.Color(255, 255, 255));
+        Department.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Department.setForeground(new java.awt.Color(153, 153, 255));
+        Department.setText("Department:");
+
+        textstudentAge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textstudentAgeActionPerformed(evt);
+            }
+        });
+
+        textdepartment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textdepartmentActionPerformed(evt);
+            }
+        });
+
+        textgpa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textgpaActionPerformed(evt);
+            }
+        });
+
+        Gpa.setBackground(new java.awt.Color(255, 255, 255));
+        Gpa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Gpa.setForeground(new java.awt.Color(153, 153, 255));
+        Gpa.setText("GPA:");
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 102, 255));
+        jLabel1.setText("Add Student");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        Add.setBackground(new java.awt.Color(204, 204, 204));
+        Add.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Add.setForeground(new java.awt.Color(102, 102, 255));
+        Add.setText("Add Student");
+        Add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddActionPerformed(evt);
+            }
+        });
+
+        StudentName.setBackground(new java.awt.Color(255, 255, 255));
+        StudentName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        StudentName.setForeground(new java.awt.Color(153, 153, 255));
+        StudentName.setText("Student Name:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(StudentName)
+                            .addComponent(Gender, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Age, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Department, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Gpa, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(79, 79, 79)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textdepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textstudentAge, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(optiongender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textstudentname, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textgpa, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(144, 144, 144)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Add))))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(StudentName)
+                    .addComponent(textstudentname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Age)
+                    .addComponent(textstudentAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Gender)
+                    .addComponent(optiongender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Department)
+                    .addComponent(textdepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Gpa)
+                    .addComponent(textgpa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(Add)
+                .addContainerGap(8, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void textstudentnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textstudentnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textstudentnameActionPerformed
+
+    private void optiongenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optiongenderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_optiongenderActionPerformed
+
+    private void textstudentAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textstudentAgeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textstudentAgeActionPerformed
+
+    private void textdepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textdepartmentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textdepartmentActionPerformed
+
+    private void textgpaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textgpaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textgpaActionPerformed
+
+    private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
+        // TODO add your handling code here:
+        String name = textstudentname.getText().trim();
+        String ageStr = textstudentAge.getText().trim();
+        String gender = optiongender.getSelectedItem().toString();
+        String department = textdepartment.getText().trim();
+        String gpaStr = textgpa.getText().trim();
+        if (name.isEmpty() || ageStr.isEmpty() || department.isEmpty() || gpaStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill all fields", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int age;
+        double gpa;
+        try {
+            age = Integer.parseInt(ageStr);
+            gpa = Double.parseDouble(gpaStr);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Age and GPA must be numeric values", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (gender.equals("Select Gender")) {
+            JOptionPane.showMessageDialog(this, "Select a gender", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (!StudentDataBase.isValidAge(age)) {
+            JOptionPane.showMessageDialog(this, "Age must be a number", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (!StudentDataBase.isValidGpa(gpa)) {
+            JOptionPane.showMessageDialog(this, "GPA must be between 0 and 4", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        StudentDataBase db = new StudentDataBase("students.txt");
+        db.addStudent(name, age, gender, department, gpa);
+        JOptionPane.showMessageDialog(this, "Student added successfully");
+        textstudentname.setText("");
+        textstudentAge.setText("");
+        optiongender.setSelectedIndex(0);
+        textdepartment.setText("");
+        textgpa.setText("");
+    }//GEN-LAST:event_AddActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Add;
+    private javax.swing.JLabel Age;
+    private javax.swing.JLabel Department;
+    private javax.swing.JLabel Gender;
+    private javax.swing.JLabel Gpa;
+    private javax.swing.JLabel StudentName;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> optiongender;
+    private javax.swing.JTextField textdepartment;
+    private javax.swing.JTextField textgpa;
+    private javax.swing.JTextField textstudentAge;
+    private javax.swing.JTextField textstudentname;
     // End of variables declaration//GEN-END:variables
 }

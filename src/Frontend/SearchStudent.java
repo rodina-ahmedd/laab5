@@ -26,19 +26,209 @@ public class SearchStudent extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
+        Search = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        optiongender = new javax.swing.JComboBox<>();
+        Department = new javax.swing.JLabel();
+        textstudentAge = new javax.swing.JTextField();
+        textdepartment = new javax.swing.JTextField();
+        StudentName = new javax.swing.JLabel();
+        textgpa = new javax.swing.JTextField();
+        textstudentname = new javax.swing.JTextField();
+        Gpa = new javax.swing.JLabel();
+        Age = new javax.swing.JLabel();
+        Gender = new javax.swing.JLabel();
+        SaveChanges = new javax.swing.JButton();
+
+        Search.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Search.setForeground(new java.awt.Color(153, 153, 255));
+        Search.setText("Search");
+
+        jTable1.setBackground(new java.awt.Color(204, 204, 255));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Name", "Age", "Gender", "Department", "Gpa"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        optiongender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gender Selection", "Male", "Female" }));
+        optiongender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optiongenderActionPerformed(evt);
+            }
+        });
+
+        Department.setBackground(new java.awt.Color(255, 255, 255));
+        Department.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Department.setForeground(new java.awt.Color(153, 153, 255));
+        Department.setText("Department:");
+
+        textstudentAge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textstudentAgeActionPerformed(evt);
+            }
+        });
+
+        textdepartment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textdepartmentActionPerformed(evt);
+            }
+        });
+
+        StudentName.setBackground(new java.awt.Color(255, 255, 255));
+        StudentName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        StudentName.setForeground(new java.awt.Color(153, 153, 255));
+        StudentName.setText("Student Name:");
+
+        textgpa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textgpaActionPerformed(evt);
+            }
+        });
+
+        textstudentname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textstudentnameActionPerformed(evt);
+            }
+        });
+
+        Gpa.setBackground(new java.awt.Color(255, 255, 255));
+        Gpa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Gpa.setForeground(new java.awt.Color(153, 153, 255));
+        Gpa.setText("GPA:");
+
+        Age.setBackground(new java.awt.Color(255, 255, 255));
+        Age.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Age.setForeground(new java.awt.Color(153, 153, 255));
+        Age.setText("Age:");
+
+        Gender.setBackground(new java.awt.Color(255, 255, 255));
+        Gender.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Gender.setForeground(new java.awt.Color(153, 153, 255));
+        Gender.setText("Gender:");
+
+        SaveChanges.setBackground(new java.awt.Color(204, 204, 204));
+        SaveChanges.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        SaveChanges.setForeground(new java.awt.Color(153, 153, 255));
+        SaveChanges.setText("Save Changes");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Gpa, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(110, 110, 110)
+                                .addComponent(Search))
+                            .addComponent(Gender, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Department, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(StudentName)
+                                    .addGap(76, 76, 76)
+                                    .addComponent(textstudentname, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(Age, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(optiongender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(textstudentAge, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(textdepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(textgpa, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 37, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(SaveChanges)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Search))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(StudentName))
+                    .addComponent(textstudentname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Age)
+                    .addComponent(textstudentAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Gender)
+                    .addComponent(optiongender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Department)
+                    .addComponent(textdepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Gpa)
+                    .addComponent(textgpa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(SaveChanges)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void optiongenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optiongenderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_optiongenderActionPerformed
+
+    private void textstudentAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textstudentAgeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textstudentAgeActionPerformed
+
+    private void textdepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textdepartmentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textdepartmentActionPerformed
+
+    private void textgpaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textgpaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textgpaActionPerformed
+
+    private void textstudentnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textstudentnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textstudentnameActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Age;
+    private javax.swing.JLabel Department;
+    private javax.swing.JLabel Gender;
+    private javax.swing.JLabel Gpa;
+    private javax.swing.JButton SaveChanges;
+    private javax.swing.JButton Search;
+    private javax.swing.JLabel StudentName;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox<String> optiongender;
+    private javax.swing.JTextField textdepartment;
+    private javax.swing.JTextField textgpa;
+    private javax.swing.JTextField textstudentAge;
+    private javax.swing.JTextField textstudentname;
     // End of variables declaration//GEN-END:variables
 }
