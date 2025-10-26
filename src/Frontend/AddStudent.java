@@ -5,12 +5,10 @@
 package Frontend;
 
 import Backend.StudentDataBase;
+import Backend.Student;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author mo
- */
 public class AddStudent extends javax.swing.JPanel {
 
     /**
@@ -41,6 +39,8 @@ public class AddStudent extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         Add = new javax.swing.JButton();
         StudentName = new javax.swing.JLabel();
+        ID = new javax.swing.JLabel();
+        textid = new javax.swing.JTextField();
 
         textstudentname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,6 +114,17 @@ public class AddStudent extends javax.swing.JPanel {
         StudentName.setForeground(new java.awt.Color(153, 153, 255));
         StudentName.setText("Student Name:");
 
+        ID.setBackground(new java.awt.Color(255, 255, 255));
+        ID.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ID.setForeground(new java.awt.Color(153, 153, 255));
+        ID.setText("ID:");
+
+        textid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textidActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -127,14 +138,16 @@ public class AddStudent extends javax.swing.JPanel {
                             .addComponent(Gender, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Age, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Department, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Gpa, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Gpa, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(79, 79, 79)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(textdepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textstudentAge, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(optiongender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textstudentname, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textgpa, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(textgpa, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textid, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(144, 144, 144)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,8 +181,12 @@ public class AddStudent extends javax.swing.JPanel {
                     .addComponent(Gpa)
                     .addComponent(textgpa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ID)
+                    .addComponent(textid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(Add)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -217,23 +234,40 @@ public class AddStudent extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Select a gender", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (!StudentDataBase.isValidAge(age)) {
-            JOptionPane.showMessageDialog(this, "Age must be a number", "Error", JOptionPane.ERROR_MESSAGE);
+        if (age < 16 || age > 100){
+            JOptionPane.showMessageDialog(this, "Invalid age! Must be between 16 and 100", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (!StudentDataBase.isValidGpa(gpa)) {
-            JOptionPane.showMessageDialog(this, "GPA must be between 0 and 4", "Error", JOptionPane.ERROR_MESSAGE);
+        if (gpa < 0 || gpa > 4.0) {
+            JOptionPane.showMessageDialog(this, "Invalid GPA! Must be between 0 and 4.0", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        StudentDataBase db = new StudentDataBase("students.txt");
-        db.addStudent(name, age, gender, department, gpa);
-        JOptionPane.showMessageDialog(this, "Student added successfully");
-        textstudentname.setText("");
-        textstudentAge.setText("");
-        optiongender.setSelectedIndex(0);
-        textdepartment.setText("");
-        textgpa.setText("");
+        StudentDataBase db;
+        try {
+            db = new StudentDataBase();
+            int id = db.loadStudentsFromFile().size() + 1;
+            Student student = new Student(id, name, age, gender, department, gpa);
+            if (db.addStudent(student)) {
+                JOptionPane.showMessageDialog(this, "Student added successfully!");
+                textstudentname.setText("");
+                textstudentAge.setText("");
+                optiongender.setSelectedIndex(0);
+                textdepartment.setText("");
+                textgpa.setText("");
+            } else {
+                JOptionPane.showMessageDialog(this, "Student with same ID already exists", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error saving student data", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+  
     }//GEN-LAST:event_AddActionPerformed
+
+    private void textidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textidActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -242,11 +276,13 @@ public class AddStudent extends javax.swing.JPanel {
     private javax.swing.JLabel Department;
     private javax.swing.JLabel Gender;
     private javax.swing.JLabel Gpa;
+    private javax.swing.JLabel ID;
     private javax.swing.JLabel StudentName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JComboBox<String> optiongender;
     private javax.swing.JTextField textdepartment;
     private javax.swing.JTextField textgpa;
+    private javax.swing.JTextField textid;
     private javax.swing.JTextField textstudentAge;
     private javax.swing.JTextField textstudentname;
     // End of variables declaration//GEN-END:variables
