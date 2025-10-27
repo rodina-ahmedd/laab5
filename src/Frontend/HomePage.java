@@ -4,6 +4,10 @@
  */
 package Frontend;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author mo
@@ -113,7 +117,11 @@ public class HomePage extends javax.swing.JFrame {
 
         javax.swing.JFrame frame = new javax.swing.JFrame("View Students");
         frame.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
-        frame.getContentPane().add(new ViewStudents());
+        try {
+            frame.getContentPane().add(new ViewStudents());
+        } catch (IOException ex) {
+            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
         frame.pack();
         frame.setLocationRelativeTo(this);
         frame.setVisible(true);
@@ -129,12 +137,16 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_SearchButtonActionPerformed
 
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
-        javax.swing.JFrame frame = new javax.swing.JFrame("Delete Student");
-        frame.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
-        frame.getContentPane().add(new DeleteStudent());
-        frame.pack();
-        frame.setLocationRelativeTo(this);
-        frame.setVisible(true);
+        try {
+            javax.swing.JFrame frame = new javax.swing.JFrame("Delete Student");
+            frame.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
+            frame.getContentPane().add(new DeleteStudent());
+            frame.pack();
+            frame.setLocationRelativeTo(this);
+            frame.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
