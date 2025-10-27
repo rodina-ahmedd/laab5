@@ -36,7 +36,7 @@ public class Controller {
     }
 
     public void updateStudent(int id, String name, int age, String gender, String department, double gpa) throws IOException {
-        Data.updateStudent(id, name, age, name, gpa);
+        Data.updateStudent(id, name, age, department, gpa);
     }
     
      public void deleteStudent(int id) throws IOException {
