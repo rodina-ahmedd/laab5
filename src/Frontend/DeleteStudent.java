@@ -4,16 +4,22 @@
  */
 package Frontend;
 
+import Backend.Student;
+import Controller.Controller;
+import java.io.IOException;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import laab5.Laab5;
 
 public class DeleteStudent extends javax.swing.JPanel {
 
     /**
      * Creates new form DeleteStudent
      */
-    public DeleteStudent() {
+    public DeleteStudent() throws IOException {
         initComponents();
+        loadStudentData();
     }
 
     /**
@@ -28,7 +34,8 @@ public class DeleteStudent extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        Delete = new javax.swing.JButton();
+        Back = new javax.swing.JButton();
+        Delete1 = new javax.swing.JButton();
 
         jTable1.setBackground(new java.awt.Color(204, 204, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -50,13 +57,23 @@ public class DeleteStudent extends javax.swing.JPanel {
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        Delete.setBackground(new java.awt.Color(204, 204, 204));
-        Delete.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Delete.setForeground(new java.awt.Color(153, 153, 255));
-        Delete.setText("Delete");
-        Delete.addActionListener(new java.awt.event.ActionListener() {
+        Back.setBackground(new java.awt.Color(204, 204, 204));
+        Back.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Back.setForeground(new java.awt.Color(153, 153, 255));
+        Back.setText("Back");
+        Back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeleteActionPerformed(evt);
+                BackActionPerformed(evt);
+            }
+        });
+
+        Delete1.setBackground(new java.awt.Color(204, 204, 204));
+        Delete1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Delete1.setForeground(new java.awt.Color(153, 153, 255));
+        Delete1.setText("Delete");
+        Delete1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Delete1ActionPerformed(evt);
             }
         });
 
@@ -65,17 +82,24 @@ public class DeleteStudent extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(164, 164, 164)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(164, 164, 164)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(Delete)))
+                .addGap(21, 21, 21)
+                .addComponent(Back)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(367, Short.MAX_VALUE)
+                    .addComponent(Delete1)
+                    .addGap(9, 9, 9)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,27 +109,67 @@ public class DeleteStudent extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(Delete)
+                .addComponent(Back)
                 .addContainerGap(14, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(262, Short.MAX_VALUE)
+                    .addComponent(Delete1)
+                    .addGap(10, 10, 10)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
+
+        this.setVisible(false);
+        new HomePage().setVisible(true);
+
+    }//GEN-LAST:event_BackActionPerformed
+
+    private void Delete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete1ActionPerformed
+        // TODO add your handling code hre:
         int selectedRow = jTable1.getSelectedRow();
         if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Please select a student to delete");
+            JOptionPane.showMessageDialog(this, "Please select a student to delete.");
         } else {
             int confirm = JOptionPane.showConfirmDialog(this, "Are you sure to delete?", "Confirm", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
+
+                int id = Integer.parseInt(jTable1.getValueAt(selectedRow, 0).toString());
+                Controller control = Laab5.getController();
+                try {
+                    control.deleteStudent(id);
+                } catch (IOException ex) {
+                    java.util.logging.Logger.getLogger(DeleteStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                }
+
                 ((DefaultTableModel) jTable1.getModel()).removeRow(selectedRow);
+                JOptionPane.showMessageDialog(this, "Student deleted successfully.");
+
             }
         }
-    }//GEN-LAST:event_DeleteActionPerformed
+
+    }//GEN-LAST:event_Delete1ActionPerformed
+
+    private void loadStudentData() throws IOException {
+
+        Controller control = Laab5.getController();
+        List<Student> students = control.getAllStudents();
+
+        DefaultTableModel table = (DefaultTableModel) jTable1.getModel();
+        table.setRowCount(0);
+
+        for (Student s : students) {
+            table.addRow(new Object[]{s.getID(), s.getName(), s.getAge(), s.getGender(), s.getDepartment(), s.getGPA()
+            });
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Delete;
+    private javax.swing.JButton Back;
+    private javax.swing.JButton Delete1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
