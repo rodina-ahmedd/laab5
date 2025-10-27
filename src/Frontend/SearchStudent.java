@@ -4,6 +4,16 @@
  */
 package Frontend;
 
+import Backend.Student;
+import Controller.Controller;
+import java.io.IOException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import laab5.Laab5;
+
 /**
  *
  * @author mo
@@ -41,10 +51,16 @@ public class SearchStudent extends javax.swing.JPanel {
         Age = new javax.swing.JLabel();
         Gender = new javax.swing.JLabel();
         SaveChanges = new javax.swing.JButton();
+        Back = new javax.swing.JButton();
 
         Search.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Search.setForeground(new java.awt.Color(153, 153, 255));
         Search.setText("Search");
+        Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchActionPerformed(evt);
+            }
+        });
 
         jTable1.setBackground(new java.awt.Color(204, 204, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -120,6 +136,21 @@ public class SearchStudent extends javax.swing.JPanel {
         SaveChanges.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         SaveChanges.setForeground(new java.awt.Color(153, 153, 255));
         SaveChanges.setText("Save Changes");
+        SaveChanges.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveChangesActionPerformed(evt);
+            }
+        });
+
+        Back.setBackground(new java.awt.Color(204, 204, 204));
+        Back.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Back.setForeground(new java.awt.Color(153, 153, 255));
+        Back.setText("Back");
+        Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -131,7 +162,6 @@ public class SearchStudent extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Gpa, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(110, 110, 110)
@@ -150,11 +180,12 @@ public class SearchStudent extends javax.swing.JPanel {
                                         .addComponent(optiongender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(textstudentAge, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(textdepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(textgpa, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(textgpa, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(Back, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Gpa, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 37, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(SaveChanges)))
+                    .addComponent(SaveChanges, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -188,7 +219,9 @@ public class SearchStudent extends javax.swing.JPanel {
                     .addComponent(Gpa)
                     .addComponent(textgpa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(SaveChanges)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SaveChanges)
+                    .addComponent(Back))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -213,9 +246,100 @@ public class SearchStudent extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_textstudentnameActionPerformed
 
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new HomePage().setVisible(true);
+
+    }//GEN-LAST:event_BackActionPerformed
+
+    private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String search = jTextField1.getText().trim();
+            
+            if (search.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Pleasr enter name or ID ");
+                return;
+            }
+            
+            Controller control = Laab5.getController();
+            List<Student> studentsList = control.getAllStudents();
+            
+            DefaultTableModel table = (DefaultTableModel) jTable1.getModel();
+            table.setRowCount(0);
+            
+            boolean flag = false;
+            
+            for (Student s : studentsList) {
+                if (String.valueOf(s.getID()).equalsIgnoreCase(search) || s.getName().equalsIgnoreCase(search)) {
+                    
+                    table.addRow(new Object[]{s.getID(), s.getName(), s.getAge(), s.getGender(), s.getDepartment(), s.getGPA()
+                    });
+                    textstudentname.setText(s.getName());
+                    textstudentAge.setText(String.valueOf(s.getAge()));
+                    optiongender.setSelectedItem(s.getGender());
+                    textdepartment.setText(s.getDepartment());
+                    textgpa.setText(String.valueOf(s.getGPA()));
+                    
+                    flag = true;
+                    break;
+                }
+                
+            }
+            
+            if (!flag) {
+                JOptionPane.showMessageDialog(this, "No student found with that ID or Name.");
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(SearchStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_SearchActionPerformed
+
+    private void SaveChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveChangesActionPerformed
+        // TODO add your handling code here:
+        
+         try {
+            String name = textstudentname.getText().trim();
+            String age = textstudentAge.getText().trim();
+            String gender = optiongender.getSelectedItem().toString();
+            String department = textdepartment.getText().trim();
+            String gpa = textgpa.getText().trim();
+
+            if (name.isEmpty() || age.isEmpty() || gender.equals("Gender Selection") || department.isEmpty() || gpa.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please fill all fields.");
+                return;
+            }
+
+            int ageValue = Integer.parseInt(age);
+            double gpaValue = Double.parseDouble(gpa);
+
+            // GPA validation
+            if (gpaValue < 0.0 || gpaValue > 4.0) {
+                JOptionPane.showMessageDialog(this, "GPA must be between 0.0 and 4.0");
+                return;
+            }
+
+            int id = Integer.parseInt(jTable1.getValueAt(0, 0).toString());
+            Controller control = Laab5.getController();
+            control.updateStudent(id, name, ageValue, gender, department, gpaValue);
+
+            JOptionPane.showMessageDialog(this, "Successfully updated.");
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Please enter valid numbers for Age and GPA.");
+        } catch (IOException ex) {
+            Logger.getLogger(SearchStudent.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_SaveChangesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Age;
+    private javax.swing.JButton Back;
     private javax.swing.JLabel Department;
     private javax.swing.JLabel Gender;
     private javax.swing.JLabel Gpa;
